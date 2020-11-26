@@ -27,5 +27,3 @@ jobs:
       run: npm install -g surge
     - name: Run Surge
       run: surge ./build covid19trackerbymianhannan.surge.sh --token ${{secrets.SURGE_TOKEN}}
-
-      name: Deploy Website
