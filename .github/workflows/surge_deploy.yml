@@ -1,24 +1,32 @@
-name: Deploy Website
 
-on: [push]
+name: Deploy on Surge with npm
 
+on:
+  push:
+    branches: [ master ]
+    paths:
+    - 'client/**'
+    
 jobs:
   build:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    name: Deploying to surge
+    defaults:
+      run:
+        shell: bash
+        working-directory: client
+    name: Build and Deploy to Surge
     steps:
-      - uses: actions/checkout@v2
-      - name: Install Node.js
-        uses: actions/setup-node@v2-beta
-        with:
-          node-version: 12
-      - name: Prepare for Yarn Installation
-        run: curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-      - name: install yarn
-        run: sudo apt update && sudo apt install yarn
-      - name: Build React App
-        run: yarn build
-      - name: Install Surge
-        run: npm install -g surge
-      - name: Run surge
-        run: surge ./build covid19trackerbymianhannan.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+    - uses: actions/checkout@v2
+    - name: Install NodeJS
+      uses: actions/setup-node@v2-beta
+      with:
+        node-version: 12
+    - name: Install Web Packages
+      run: npm install
+    - name: Build App
+      run: npm run build
+    - name: Install Surge
+      run: npm install -g surge
+    - name: Run Surge
+      run: surge ./build covid19trackerbymianhannan.surge.sh --token ${{secrets.SURGE_TOKEN}}
