@@ -49,10 +49,10 @@ export const App = () => {
         <Header />
         <NumberCards />
         <Charts />
-        <div>
-          <a href="mianhannan.github.io/covid19tracker">Covid19 Tracker </a>
+        <div style={{ marginBottom: '10px' }}>
+          <a href="https://mianhannan.github.io/covid19tracker">Covid19 Tracker </a>
           Developed with ❤ by
-          <a href="mianhannan.github.io"> Mian Hannan</a>
+          <a href="https://mianhannan.github.io"> Mian Hannan</a>
         </div>
       </GlobalData.Provider>
     )
