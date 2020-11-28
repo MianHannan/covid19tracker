@@ -32,7 +32,7 @@ export const App = () => {
     return (
       <div>
         <div className='loader'>
-          <img src="/favicon.ico" alt='Loading' />
+          <img src={document.URL + '/favicon.ico'} alt='Loading' />
         </div>
         <h1>{message}</h1>
       </div>

@@ -12,7 +12,7 @@ export const Header = () => {
         <div className='container header'>
             <div className='row'>
                 <div className='col-md-9 left-align'>
-                    <img src='/logo.png' alt='COVID19 TRACKER' />
+                    <img src={document.URL + '/logo.png'} alt='COVID19 TRACKER' />
                 </div>
                 <div className='col-md-2'>
                     <FormControl>

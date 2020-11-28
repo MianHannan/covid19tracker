@@ -5,7 +5,6 @@ import { GlobalData } from '../App'
 export const NumberCards = () => {
 
     const gData = React.useContext(GlobalData);
-    console.log(gData);
 
     return (
         <div className="container numberCards">
