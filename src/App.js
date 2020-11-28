@@ -49,6 +49,11 @@ export const App = () => {
         <Header />
         <NumberCards />
         <Charts />
+        <div>
+          <a href="mianhannan.github.io/covid19tracker">Covid19 Tracker </a>
+          Developed with ❤ by
+          <a href="mianhannan.github.io"> Mian Hannan</a>
+        </div>
       </GlobalData.Provider>
     )
   }
