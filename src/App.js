@@ -1,10 +1,55 @@
 import React from 'react'
+import { Header } from './components/Header'
+import { NumberCards } from './components/NumberCards'
+import { Charts } from './components/Charts'
+
+
+export const GlobalData = React.createContext({});
 
 export const App = () => {
-  return (
-    <div>
-      <h1>Covid19 Tracker</h1>
-      <h2>Surge Deploy CICD test number 4</h2>
-    </div>
-  )
+
+  const [isFetched, setIsFetched] = React.useState(false);
+  const [data, setData] = React.useState({});
+
+  const [message, setMessage] = React.useState("");
+  const [country, setCountry] = React.useState("Global");
+
+  React.useEffect(() => {
+    fetch('https://api.covid19api.com/summary')
+      .then(response => response.json())
+      .then(data => {
+        if (data.Message === "") {
+          setData(data);
+          setIsFetched(true);
+        }
+        else {
+          setMessage("Error Refresh the Page API message : " + data.Message);
+        }
+      })
+  }, [])
+
+  if (isFetched === false) {
+    return (
+      <div>
+        <div className='loader'>
+          <img src="/favicon.ico" alt='Loading' />
+        </div>
+        <h1>{message}</h1>
+      </div>
+
+    )
+  } else {
+    return (
+      <GlobalData.Provider value={{
+        data: data,
+        setData: setData,
+        country: country,
+        setCountry: setCountry
+      }}>
+        <Header />
+        <NumberCards />
+        <Charts />
+      </GlobalData.Provider>
+    )
+  }
 }
